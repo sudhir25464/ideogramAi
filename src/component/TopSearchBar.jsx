@@ -8,7 +8,9 @@ function TopSearchBar() {
 
 
   const [userinput, setUserInput] = useState({
-    userRequest: "",
+    prompt: "",
+    magic_prompt: true,
+
   });
 
   const HandleSubmit = async (e) => {
@@ -25,7 +27,7 @@ function TopSearchBar() {
       setUserInput({ userRequest: "" });
    
     } catch (error) {
-      console.log(error.error);
+      console.log("error is:", error);
     }
   };
 
@@ -62,7 +64,7 @@ function TopSearchBar() {
                 type="text"
                 value={userinput.userRequest}
                 onChange={(e) =>
-                  setUserInput({ ...userinput, userRequest: e.target.value })
+                  setUserInput({ ...userinput, prompt: e.target.value })
                 }
                 placeholder="Describe what you want to see. Your prompt cannot be empty."
                 required/>
