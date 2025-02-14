@@ -1,0 +1,38 @@
+
+/* https://ideogram.ai/ */
+.filter-menu-container{
+
+
+    /* background-color: rgb(67, 13, 13); */
+   
+   /* background-color: aqua; */
+    height: 800px;
+    padding: 40px  20px ;
+}
+
+.inner-menu-container{
+
+display: flex;
+gap: 2px;
+background-color: aqua;
+
+}
+ 
+.menu-btn{
+    padding:10px 17px;
+    border: none;
+
+    border-radius: 5px;
+}
+.menu-btn:hover{
+    /* background-color: rgb(240, 235, 228); */
+    
+}
+
+@media(max-width:900px){
+
+    .inner-menu-container{
+        position: fixed;
+        top: 0;
+    }
+}
