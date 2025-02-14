@@ -26,6 +26,41 @@ function TopSearchBar() {
 
   const [showPopup, setShowPopup] = useState(false);
 
+  const imageData = [
+    {
+      id: 1,
+      image: "https://via.placeholder.com/300x200?text=Image+1"
+    },
+    {
+      id: 2,
+      image: "https://via.placeholder.com/300x200?text=Image+2"
+    },
+    {
+      id: 3,
+      image: "https://via.placeholder.com/300x200?text=Image+3"
+    },
+    {
+      id: 4,
+      image: "https://via.placeholder.com/300x200?text=Image+4"
+    },
+    {
+      id: 5,
+      image: "https://via.placeholder.com/300x200?text=Image+5"
+    },
+    {
+      id: 6,
+      image: "https://via.placeholder.com/300x200?text=Image+6"
+    },
+    {
+      id: 7,
+      image: "https://via.placeholder.com/300x200?text=Image+7"
+    },
+    
+  ];
+  
+
+
+
   const [userinput, setUserInput] = useState({
     prompt: "",
     magic_prompt: true,
@@ -61,7 +96,7 @@ function TopSearchBar() {
 
   const getAllimage = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000/gen-get");
+      const response = await axios.get("http://127.0.0.1:5000/get_images_by_category/Explore");
       // seTimage(response.data);
       setimageStore(response.data);
       console.log("success");
@@ -71,7 +106,7 @@ function TopSearchBar() {
   };
 
   useEffect(() => {
-    // getAllimage();
+    getAllimage();
   }, []);
 
   const loading = () => {
@@ -115,7 +150,7 @@ function TopSearchBar() {
 
               {LoadingState ? (
                 <div>
-                  {/* <p>loading..</p> */}
+                  <p>loading..</p>
                   {/* <LoadingComponent/> */}
                 </div>
               ) : (
@@ -161,10 +196,11 @@ function TopSearchBar() {
 
         {/* imagelist -container */}
 
-        <div className="image-container">
-          {imagestore.map((image, index) => (
-            <div key={index}>
-              <img src={image.image_url} alt="image" />
+        <div className="map-image-container">
+          {imageData.map((image, index) => (
+          
+            <div key={index}   className="genered-image">
+              <img src={image.image} alt="image" />
             </div>
           ))}
         </div>

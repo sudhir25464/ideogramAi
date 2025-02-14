@@ -29,6 +29,19 @@ gap: 2px;
     
 }
 
+
+.map-image-container{
+
+    display: flex;
+}
+.genered-image{
+
+    min-height:400px;
+    background-color: aqua;
+    max-height: 600px;
+    width: 400px;
+    margin-right: 2px;
+}
 @media(max-width:900px){
 
     .inner-menu-container{
