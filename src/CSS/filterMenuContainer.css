@@ -29,20 +29,20 @@ gap: 2px;
     
 }
 
-.map-image-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 images per row */
-    gap: 16px; /* Space between images */
-    margin: 0 auto;
-  }
-  
-  .genered-image img {
-    width: 100%;
-  
+
+.map-image-container{
+
+    display: flex;
+}
+.genered-image{
+
+    min-height:400px;
+    background-color: aqua;
+    max-height: 600px;
+    width: 400px;
+    margin-right: 2px;
  
-  }
-  
-  
+}
 @media(max-width:900px){
 
     .inner-menu-container{
