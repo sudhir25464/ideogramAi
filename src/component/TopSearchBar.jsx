@@ -7,7 +7,7 @@ import axios from "axios";
 function TopSearchBar() {
 
 
-  const [imagestore, setimageStore] = useState([])
+  const [imagestore, setimageStore] = useState([""])
 
   const [imageUrl, setImageUrl] = useState(null)
 
@@ -50,11 +50,13 @@ setImageUrl(response.data.image_url);
 
 
   const [image, seTimage] = useState([]);
+
+
   const getAllimage = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000/gen-get");
-      seTimage(response.data);
-
+      // seTimage(response.data);
+      setimageStore(response.data);
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -98,11 +100,11 @@ setImageUrl(response.data.image_url);
         </div>
       </div>
       
-      {
+      {/* {
         imageUrl?
         <img src={imageUrl} />
         :""
-      }
+      } */}
       
       
 
@@ -127,10 +129,17 @@ setImageUrl(response.data.image_url);
         {/* imagelist -container */}
 
         <div className="image-container">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil,
-            neque.
-          </p>
+        
+       {
+
+          imagestore.map((image, index) => (
+            <div key={index}>
+              <img src={image.image_url} alt="image" />
+            </div>
+          ))
+
+         }
+      
         </div>
       </div>
     </>
