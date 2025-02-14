@@ -35,7 +35,7 @@ function TopSearchBar() {
 
   
 
-  const [LoadingState, setloadingState] = useState(true);
+  const [LoadingState, setloadingState] = useState(false);
 
 
   const [showPopup, setShowPopup] = useState(false);
