@@ -98,10 +98,10 @@ function TopSearchBar() {
     try {
       const response = await axios.get("http://127.0.0.1:5000/get_images_by_category/Explore");
       // seTimage(response.data);
-      setimageStore(response.data);
+      setimageStore(response.data.images);
 
 
-      console.log("response success", imagestore)
+      console.log("response success", response.data.images)
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -200,10 +200,11 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {imagestore.map((image, index) => (
+          {imagestore && imagestore.map((image, index) => (
           
             <div key={index}   className="genered-image">
-              <img src={image.image.imageUrl} alt="image" />
+              <img src={image.image_url} alt="image" />
+              
             </div>
           ))}
         </div>
