@@ -135,13 +135,24 @@ function TopSearchBar() {
                 placeholder="Describe what you want to see. Your prompt cannot be empty."
                 required/>
               <div>
-                <button
+
+
+
+                    <button
+              type="submit"
+              onClick={HandleSubmit}
+              className={`generate-btn ${loading ? "loading" : ""}`}
+              disabled={loading} // Disable button when loading
+            >
+              {loading ? "Generating..." : "Generate"}
+            </button>
+                {/* <button
                   type="submit"
                   onClick={HandleSubmit}
                   className="generate-btn"
                 >
-                  Generate
-                </button>
+                     Generate
+                </button> */}
               </div>
 
 
