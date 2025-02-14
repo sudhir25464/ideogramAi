@@ -18,7 +18,7 @@ const LoadingComponent = () => {
 };
 
 function TopSearchBar() {
-  const [imagestore, setimageStore] = useState([]);
+  const [imagestore, setimageStore] = useState("");
 
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -99,6 +99,9 @@ function TopSearchBar() {
       const response = await axios.get("http://127.0.0.1:5000/get_images_by_category/Explore");
       // seTimage(response.data);
       setimageStore(response.data);
+
+
+      console.log("response success", imagestore)
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -197,12 +200,12 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {imagestore.map((image, index) => (
+          {/* {imagestore.map((image, index) => (
           
             <div key={index}   className="genered-image">
               <img src={image.image.imageUrl} alt="image" />
             </div>
-          ))}
+          ))} */}
         </div>
       </div>
     </>
