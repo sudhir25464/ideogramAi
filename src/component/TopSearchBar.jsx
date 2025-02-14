@@ -3,6 +3,17 @@ import "../CSS/header.css";
 import "../CSS/filterMenuContainer.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "../CSS/pop.css"
+
+const ShowPopComponent = ({ imageUrl }) => {
+  return (
+    <div className="show-container">
+    <div className="popup">
+      <img src={imageUrl} alt="Popup" className="popup-image" />
+    </div>
+    </div>
+  );
+};
 
 function TopSearchBar() {
 
@@ -13,7 +24,10 @@ function TopSearchBar() {
 
   
 
-  const [LoadingState, setloadingState] = useState(false);
+  const [LoadingState, setloadingState] = useState(true);
+
+
+  const [showPopup, setShowPopup] = useState(false);
 
   const [userinput, setUserInput] = useState({
     prompt: "",
@@ -26,6 +40,7 @@ function TopSearchBar() {
     e.preventDefault();
     console.log("User input:", userinput);
     setloadingState(true)
+    
 
     try {
   
@@ -45,6 +60,7 @@ function TopSearchBar() {
       
       // alert("Form submitted successfully!");
       setloadingState(false);
+      setShowPopup(true);
       
       setUserInput({ prompt: "" });
    
@@ -84,13 +100,8 @@ function TopSearchBar() {
   }
 
 
-  const createdImage = ()=>{
-    return(
-      <div>
-        <img src={imageUrl} />
-      </div>
-    )
-  }
+ 
+  
 
 
   return (
@@ -128,11 +139,15 @@ function TopSearchBar() {
 
               {
                 LoadingState ? (
-                    <div> loading</div>
+                    <div>
+
+                    {/* <p>loading..</p> */}
+                      {/* <ShowPopComponent  image_Url={imageUrl}/> */}
+                    </div>
                 ) :(
                     <div>
 
-                <img src={imageUrl} />
+                       <ShowPopComponent  image_Url={imageUrl}/>
                     </div>
                 )
                 
