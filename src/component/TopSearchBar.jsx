@@ -1,11 +1,51 @@
 import React from "react";
 import "../CSS/header.css";
 import "../CSS/filterMenuContainer.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function TopSearchBar() {
 
 
-  
+  const [userinput, setUserInput] = useState({
+    userRequest: "",
+  });
+
+  const HandleSubmit = async (e) => {
+    
+    e.preventDefault();
+    console.log("User input:", userinput);
+
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/gen-post", userinput);
+      // setUserInput(response);
+      console.log("Data sent successfully:", response.data);
+      alert("Form submitted successfully!");
+      
+      setUserInput({ userRequest: "" });
+   
+    } catch (error) {
+      console.log(error.error);
+    }
+  };
+
+
+
+  const [image, seTimage] = useState([]);
+  const getAllimage = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/gen-get");
+      seTimage(response.data);
+
+      console.log("success");
+    } catch (error) {
+      console.log(error.error);
+    }
+  };
+
+  useEffect(() => {
+    getAllimage();
+  }, []);
 
   return (
     <>
@@ -18,11 +58,22 @@ function TopSearchBar() {
           <div className="search-inner-container">
             <div className="search-input">
               <input
+
                 type="text"
+                value={userinput.userRequest}
+                onChange={(e) =>
+                  setUserInput({ ...userinput, userRequest: e.target.value })
+                }
                 placeholder="Describe what you want to see. Your prompt cannot be empty."
-              />
+                required/>
               <div>
-                <button className="generate-btn">Generate</button>
+                <button
+                  type="submit"
+                  onClick={HandleSubmit}
+                  className="generate-btn"
+                >
+                  Generate
+                </button>
               </div>
             </div>
           </div>
