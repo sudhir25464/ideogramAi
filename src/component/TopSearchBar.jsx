@@ -147,7 +147,7 @@ function TopSearchBar() {
                 ) :(
                     <div>
 
-                       <ShowPopComponent  image_Url={imageUrl}/>
+                       <ShowPopComponent  imageUrl={imageUrl}/>
                     </div>
                 )
                 
