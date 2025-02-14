@@ -7,6 +7,12 @@ import axios from "axios";
 function TopSearchBar() {
 
 
+  const [imagestore, setimageStore] = useState([])
+
+  const [imageUrl, setImageUrl] = useState(null)
+
+  
+
   const [userinput, setUserInput] = useState({
     prompt: "",
     magic_prompt: true,
@@ -21,10 +27,20 @@ function TopSearchBar() {
     try {
       const response = await axios.post("http://127.0.0.1:5000/gen-post", userinput);
       // setUserInput(response);
+
+      setimageStore(response.data);
+
+      // const rsp = await response
+
+
+
       console.log("Data sent successfully:", response.data);
+
+setImageUrl(response.data.image_url);
+      
       alert("Form submitted successfully!");
       
-      setUserInput({ userRequest: "" });
+      setUserInput({ prompt: "" });
    
     } catch (error) {
       console.log("error is:", error);
@@ -81,6 +97,14 @@ function TopSearchBar() {
           </div>
         </div>
       </div>
+      
+      {
+        imageUrl?
+        <img src={imageUrl} />
+        :""
+      }
+      
+      
 
       {/* bottom-section    filter-menu*/}
 
