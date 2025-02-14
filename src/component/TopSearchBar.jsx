@@ -15,6 +15,17 @@ const ShowPopComponent = ({ imageUrl }) => {
   );
 };
 
+const LoadingComponent = () => {
+  return (
+    <div className="loading-container">
+    <div className="loading-popup">
+
+      {/* <img src={imageUrl} alt="Popup" className="popup-image" /> */}
+    </div>
+    </div>
+  );
+};
+
 function TopSearchBar() {
 
 
@@ -142,7 +153,7 @@ function TopSearchBar() {
                     <div>
 
                     {/* <p>loading..</p> */}
-                      {/* <ShowPopComponent  image_Url={imageUrl}/> */}
+                       <LoadingComponent/>
                     </div>
                 ) :(
                     <div>
