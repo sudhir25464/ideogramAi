@@ -13,6 +13,8 @@ function TopSearchBar() {
 
   
 
+  const [LoadingState, setloadingState] = useState(false);
+
   const [userinput, setUserInput] = useState({
     prompt: "",
     magic_prompt: true,
@@ -23,12 +25,15 @@ function TopSearchBar() {
     
     e.preventDefault();
     console.log("User input:", userinput);
+    setloadingState(true)
 
     try {
+  
       const response = await axios.post("http://127.0.0.1:5000/gen-post", userinput);
       // setUserInput(response);
-
-      setimageStore(response.data);
+      setImageUrl(response.data.image_url);
+     
+      // setimageStore(response.data);
 
       // const rsp = await response
 
@@ -36,9 +41,10 @@ function TopSearchBar() {
 
       console.log("Data sent successfully:", response.data);
 
-setImageUrl(response.data.image_url);
+
       
-      alert("Form submitted successfully!");
+      // alert("Form submitted successfully!");
+      setloadingState(false);
       
       setUserInput({ prompt: "" });
    
@@ -64,8 +70,28 @@ setImageUrl(response.data.image_url);
   };
 
   useEffect(() => {
-    getAllimage();
+    // getAllimage();
   }, []);
+
+
+
+  const loading= ()=>{
+    return(
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    )
+  }
+
+
+  const createdImage = ()=>{
+    return(
+      <div>
+        <img src={imageUrl} />
+      </div>
+    )
+  }
+
 
   return (
     <>
@@ -95,6 +121,26 @@ setImageUrl(response.data.image_url);
                   Generate
                 </button>
               </div>
+
+
+              {/* new component */}
+
+
+              {
+                LoadingState ? (
+                    <div> loading</div>
+                ) :(
+                    <div>
+
+                <img src={imageUrl} />
+                    </div>
+                )
+                
+              
+
+                
+
+              }
             </div>
           </div>
         </div>
