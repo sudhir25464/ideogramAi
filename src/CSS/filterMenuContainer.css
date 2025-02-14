@@ -33,6 +33,7 @@ gap: 2px;
 .map-image-container{
 
     display: flex;
+    flex-wrap: wrap;
 }
 .genered-image{
 
