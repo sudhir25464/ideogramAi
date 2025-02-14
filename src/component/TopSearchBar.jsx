@@ -18,7 +18,7 @@ const LoadingComponent = () => {
 };
 
 function TopSearchBar() {
-  const [imagestore, setimageStore] = useState("");
+  const [imagestore, setimageStore] = useState();
 
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -200,12 +200,12 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {/* {imagestore.map((image, index) => (
+          {imagestore.map((image, index) => (
           
             <div key={index}   className="genered-image">
               <img src={image.image.imageUrl} alt="image" />
             </div>
-          ))} */}
+          ))}
         </div>
       </div>
     </>
