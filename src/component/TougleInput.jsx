@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../CSS/tougleInput.css";
 
-const TougleInput = ( {userinput,HandleSubmit, setUserInput,clearUserInput,  setToggleInput}) => {
+const TougleInput = ( {userinput,HandleSubmit, setUserInput,clearUserInput, LoadingState, setToggleInput}) => {
   const [description, setDescription] = useState("");
   const [magicPrompt, setMagicPrompt] = useState(true);
   const [aspectRatio, setAspectRatio] = useState("16:10");
@@ -12,13 +12,17 @@ const TougleInput = ( {userinput,HandleSubmit, setUserInput,clearUserInput,  set
     <div className="main-input-container">
       <div className="container">
         <div className="left-side-input-container">
+          <form>
           <textarea
             className="input-section"
+            
             placeholder="Describe what you want to see"
             value={userinput.prompt}
               onChange={(e) => setUserInput({ ...userinput, prompt: e.target.value })}
+              required
           
           />
+          </form>
 
           <div className="tougle-input-group">
             <button className="input-group-btn" type="button">
@@ -157,7 +161,14 @@ const TougleInput = ( {userinput,HandleSubmit, setUserInput,clearUserInput,  set
             </div>
           </div>
           <div className="right-input-bottom-section">
-            <button className="generate-input-btn1" onClick={HandleSubmit}>Generate</button>
+            {
+              LoadingState ? 
+              <button className="generate-input-btn1" >loading..</button>
+
+              :
+              <button className="generate-input-btn1" onClick={HandleSubmit}>Generate</button>
+
+            }
           </div>
         </div>
       </div>

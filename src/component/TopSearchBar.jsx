@@ -34,27 +34,29 @@ function TopSearchBar() {
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
+    setloadingState(true);
 
     console.log("User input:", userinput);
 
     try {
-      setloadingState(true);
       const response = await axios.post(
         "http://127.0.0.1:5000/gen-post",
         userinput
       );
+
       // setUserInput(response);
       setImageUrl(response.data.image_url);
       console.log("Data sent successfully:", response.data);
 
       // alert("Form submitted successfully!");
-      setloadingState(false);
+      
       setShowPopup(true);
-
+      
       setUserInput({ prompt: "" });
     } catch (error) {
       console.log("error is:", error);
     }
+    setloadingState(false);
   };
 
 
@@ -93,6 +95,14 @@ function TopSearchBar() {
 
   return (
     <>
+{/* {
+  LoadingState?
+<button >Loading...</button>
+:
+<button >Genetrate</button>
+} */}
+
+    
       <div className="top-search-bar">
         <div className="top-search-bar-text">
           <p>What will you create ?</p>
@@ -108,6 +118,7 @@ function TopSearchBar() {
                setToggleInput={setTougleinput}
                HandleSubmit={HandleSubmit}
                clearUserInput={clearUserInput}
+               LoadingState={LoadingState}
                />
         
 
@@ -147,7 +158,7 @@ function TopSearchBar() {
 
           {LoadingState ? (
                 <div>
-                  <p>loading..</p>
+                  {/* <p>loading..</p> */}
                  
                 </div>
               ) : (
