@@ -4,8 +4,7 @@ import "../CSS/filterMenuContainer.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/pop.css";
-
-
+import TougleInput from "./TougleInput";
 
 const LoadingComponent = () => {
   return (
@@ -26,40 +25,7 @@ function TopSearchBar() {
 
   const [showPopup, setShowPopup] = useState(false);
 
-  const imageData = [
-    {
-      id: 1,
-      image: "https://via.placeholder.com/300x200?text=Image+1"
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/300x200?text=Image+2"
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/300x200?text=Image+3"
-    },
-    {
-      id: 4,
-      image: "https://via.placeholder.com/300x200?text=Image+4"
-    },
-    {
-      id: 5,
-      image: "https://via.placeholder.com/300x200?text=Image+5"
-    },
-    {
-      id: 6,
-      image: "https://via.placeholder.com/300x200?text=Image+6"
-    },
-    {
-      id: 7,
-      image: "https://via.placeholder.com/300x200?text=Image+7"
-    },
-    
-  ];
-  
-
-
+  const [tougleInput, setTougleinput] = useState(false);
 
   const [userinput, setUserInput] = useState({
     prompt: "",
@@ -67,10 +33,9 @@ function TopSearchBar() {
   });
 
   const HandleSubmit = async (e) => {
+    e.preventDefault();
 
-    e.preventDefault()
-
-    console.log("User input:", userinput)
+    console.log("User input:", userinput);
 
     try {
       setloadingState(true);
@@ -92,16 +57,22 @@ function TopSearchBar() {
     }
   };
 
+
+  const clearUserInput =()=>{
+    setUserInput({ prompt: "" });
+  }
+
   const [image, seTimage] = useState([]);
 
   const getAllimage = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:5000/get_images_by_category/Explore");
+      const response = await axios.get(
+        "http://127.0.0.1:5000/get_images_by_category/Explore"
+      );
       // seTimage(response.data);
       setimageStore(response.data.images);
 
-
-      console.log("response success", response.data.images)
+      console.log("response success", response.data.images);
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -128,16 +99,31 @@ function TopSearchBar() {
         </div>
 
         <div className="Buttom-seach-bar-input">
+
+          {
+             tougleInput ? (
+               <TougleInput 
+               userinput={userinput}
+               setUserInput={setUserInput}
+               setToggleInput={setTougleinput}
+               HandleSubmit={HandleSubmit}
+               clearUserInput={clearUserInput}
+               />
+        
+
+                )  :(
           <div className="search-inner-container">
             <div className="search-input">
               <input
                 type="text"
-                value={userinput.userRequest}
+                value={userinput.prompt}
                 onChange={(e) =>
                   setUserInput({ ...userinput, prompt: e.target.value })
                 }
                 placeholder="Describe what you want to see. Your prompt cannot be empty."
                 required
+
+                onClick={() => setTougleinput(true)} 
               />
               <div>
                 <button
@@ -151,25 +137,30 @@ function TopSearchBar() {
 
               {/* new component */}
 
-              {LoadingState ? (
+         
+            </div>
+          
+          </div>
+                )
+
+        }
+
+          {LoadingState ? (
                 <div>
                   <p>loading..</p>
-                  {/* <LoadingComponent/> */}
+                 
                 </div>
               ) : (
                 <div>
-                  {
-                    showPopup ?(
-                      <ShowPopComponent imageUrl={imageUrl} />
-                    ):(
+                  {showPopup ? (
+                    <ShowPopComponent imageUrl={imageUrl} />
+                  ) : (
                     <p></p>
-                    )
-                  }
-                 
+                  )}
                 </div>
               )}
-            </div>
-          </div>
+
+          {/* <TougleInput /> */}
         </div>
       </div>
 
@@ -200,13 +191,12 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {imagestore && imagestore.map((image, index) => (
-          
-            <div key={index}   className="genered-image">
-              <img src={image.image_url} alt="image" />
-              
-            </div>
-          ))}
+          {imagestore &&
+            imagestore.map((image, index) => (
+              <div key={index} className="genered-image">
+                <img src={image.image_url} alt="image" />
+              </div>
+            ))}
         </div>
       </div>
     </>
@@ -214,7 +204,6 @@ function TopSearchBar() {
 }
 
 export default TopSearchBar;
-
 
 const ShowPopComponent = ({ imageUrl }) => {
   return (

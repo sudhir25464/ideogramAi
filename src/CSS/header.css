@@ -41,6 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 4px;
 }
 .top-search-bar-text p{
     font-size: 32px;
@@ -88,7 +89,7 @@
     align-items: center;
 
     width: 100%;
-  
+     
     border-radius: 10px;
     /* background-color: white; */
   }

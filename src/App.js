@@ -4,6 +4,7 @@ import ButtomNavbar from './component/ButtomNavbar';
 import Navbar from './component/Navbar';
 import TopHeader from './component/TopHeader';
 import TopSearchBar from './component/TopSearchBar';
+import TougleInput from './component/TougleInput';
 function App() {
   return (
 
@@ -17,11 +18,13 @@ function App() {
         <Navbar />
       
       </div>
+
       <ButtomNavbar/>
 
       {/*  main-container section */}
       <div className="main-app-container">
         <TopHeader/>
+        {/* <TougleInput/> */}
         <TopSearchBar/>
 
       </div>
