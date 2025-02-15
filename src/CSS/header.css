@@ -35,6 +35,8 @@
 
 .top-search-bar{
     /* background-color:white; */
+    position: sticky;
+    top: -50px;
 }
 
 .top-search-bar-text{

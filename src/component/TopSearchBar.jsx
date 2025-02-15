@@ -19,11 +19,11 @@ const LoadingComponent = () => {
 function TopSearchBar() {
   const [imagestore, setimageStore] = useState();
 
-  const [imageUrl, setImageUrl] = useState(null);
+  const [imageUrl, setImageUrl] = useState([]);
 
   const [LoadingState, setloadingState] = useState(false);
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
 
   const [tougleInput, setTougleinput] = useState(false);
 
@@ -49,9 +49,9 @@ function TopSearchBar() {
       console.log("Data sent successfully:", response.data);
 
       // alert("Form submitted successfully!");
-      
+
       setShowPopup(true);
-      
+
       setUserInput({ prompt: "" });
     } catch (error) {
       console.log("error is:", error);
@@ -59,10 +59,9 @@ function TopSearchBar() {
     setloadingState(false);
   };
 
-
-  const clearUserInput =()=>{
+  const clearUserInput = () => {
     setUserInput({ prompt: "" });
-  }
+  };
 
   const [image, seTimage] = useState([]);
 
@@ -95,81 +94,70 @@ function TopSearchBar() {
 
   return (
     <>
-{/* {
+      {/* {
   LoadingState?
 <button >Loading...</button>
 :
 <button >Genetrate</button>
 } */}
 
-    
       <div className="top-search-bar">
         <div className="top-search-bar-text">
           <p>What will you create ?</p>
         </div>
 
         <div className="Buttom-seach-bar-input">
+          {tougleInput ? (
+            <TougleInput
+              userinput={userinput}
+              setUserInput={setUserInput}
+              setToggleInput={setTougleinput}
+              HandleSubmit={HandleSubmit}
+              clearUserInput={clearUserInput}
+              LoadingState={LoadingState}
+            />
+          ) : (
+            <div className="search-inner-container">
+              <div className="search-input">
+                <input
+                  type="text"
+                  value={userinput.prompt}
+                  onChange={(e) =>
+                    setUserInput({ ...userinput, prompt: e.target.value })
+                  }
+                  placeholder="Describe what you want to see. Your prompt cannot be empty."
+                  required
+                  onClick={() => setTougleinput(true)}
+                />
+                <div>
+                  <button
+                    type="submit"
+                    onClick={HandleSubmit}
+                    className="generate-btn"
+                  >
+                    Generate
+                  </button>
+                </div>
 
-          {
-             tougleInput ? (
-               <TougleInput 
-               userinput={userinput}
-               setUserInput={setUserInput}
-               setToggleInput={setTougleinput}
-               HandleSubmit={HandleSubmit}
-               clearUserInput={clearUserInput}
-               LoadingState={LoadingState}
-               />
-        
-
-                )  :(
-          <div className="search-inner-container">
-            <div className="search-input">
-              <input
-                type="text"
-                value={userinput.prompt}
-                onChange={(e) =>
-                  setUserInput({ ...userinput, prompt: e.target.value })
-                }
-                placeholder="Describe what you want to see. Your prompt cannot be empty."
-                required
-
-                onClick={() => setTougleinput(true)} 
-              />
-              <div>
-                <button
-                  type="submit"
-                  onClick={HandleSubmit}
-                  className="generate-btn"
-                >
-                  Generate
-                </button>
+                {/* new component */}
               </div>
-
-              {/* new component */}
-
-         
             </div>
-          
-          </div>
-                )
-
-        }
+          )}
 
           {LoadingState ? (
-                <div>
-                  {/* <p>loading..</p> */}
-                 
-                </div>
+            <div>{/* <p>loading..</p> */}</div>
+          ) : (
+            <div>
+              {showPopup ? (
+                <ShowPopComponent
+                  setShowPopup={setShowPopup}
+                  imageUrl={imageUrl}
+                />
               ) : (
-                <div>
-                  {showPopup ? (
-                    <ShowPopComponent imageUrl={imageUrl} />
-                  ) : (
-                    <p></p>
-                  )}
-                </div>
+                <p></p>
               )}
+            </div>
+          )}
 
           {/* <TougleInput /> */}
         </div>
@@ -216,11 +204,46 @@ function TopSearchBar() {
 
 export default TopSearchBar;
 
-const ShowPopComponent = ({ imageUrl }) => {
+const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
   return (
     <div className="show-container">
       <div className="popup">
-        <img src={imageUrl} alt="Popup" className="popup-image" />
+        <div className="popup-tougle-icon">
+          <button onClick={() => setShowPopup(false)}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="#3F3F46"
+              viewBox="0 0 20 20"
+            >
+              <g>
+                <path
+                  fill="#3F3F46"
+                  d="M4.089 4.216l.057-.07a.5.5 0 01.638-.057l.07.057L10 9.293l5.146-5.147a.5.5 0 01.638-.057l.07.057a.5.5 0 01.057.638l-.057.07L10.707 10l5.147 5.146a.5.5 0 01.057.638l-.057.07a.5.5 0 01-.638.057l-.07-.057L10 10.707l-5.146 5.147a.5.5 0 01-.638.057l-.07-.057a.5.5 0 01-.057-.638l.057-.07L9.293 10 4.146 4.854a.5.5 0 01-.057-.638l.057-.07-.057.07z"
+                ></path>
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <div className="show-pop-image-container">
+
+          {
+            imageUrl.map((image,index)=>{
+
+              <div className="pop-inner-image"  key={index} >
+              <img src={image.image_url} alt="Popup" className="popup-image" />
+              </div>
+            })
+          }
+          {/* <img src={imageUrl} alt="Popup" className="popup-image" />
+          <img src={imageUrl} alt="Popup" className="popup-image" />
+          <img src={imageUrl} alt="Popup" className="popup-image" />
+       */}
+        </div>
+      
+
       </div>
     </div>
   );

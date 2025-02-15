@@ -6,6 +6,8 @@
     /* background-color: rgb(67, 13, 13); */
    
    /* background-color: aqua; */
+
+
     height: 800px;
     padding: 40px  20px ;
 }
@@ -36,8 +38,8 @@ gap: 2px;
     flex-wrap: wrap;
 }
 .genered-image{
-
-    min-height:300px;
+    
+    height:auto;
     background-color: aqua;
     max-height: 400px;
     width: 250px;
@@ -45,10 +47,12 @@ gap: 2px;
     align-items: center;
     gap: 2px;
     margin:2px ;
-
-   
- 
+    
 }
+.genered-image > img{
+ width: 100%;
+}
+
 @media(max-width:900px){
 
     .inner-menu-container{

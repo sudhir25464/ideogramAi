@@ -163,7 +163,7 @@ const TougleInput = ( {userinput,HandleSubmit, setUserInput,clearUserInput, Load
           <div className="right-input-bottom-section">
             {
               LoadingState ? 
-              <button className="generate-input-btn1" >loading..</button>
+              <button className="loading-input-btn1" >loading..</button>
 
               :
               <button className="generate-input-btn1" onClick={HandleSubmit}>Generate</button>
