@@ -69,7 +69,7 @@ function TopSearchBar() {
   const getAllimage = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:5000/get_images_by_category/Explore"
+        "http://127.0.0.1:5000/get_images_by_category/explore"
       );
       // seTimage(response.data);
       setimageStore(response.data.images);
