@@ -105,7 +105,7 @@ function TopSearchBar() {
         setTopStore(response.data.images)
 
         console.log("topstore", TopStrore);
-      console.log("response success", response.data.images);
+      console.log("response success", response.data);
       console.log("success");
     } catch (error) {
       console.log(error.error);
