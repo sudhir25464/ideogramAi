@@ -23,7 +23,7 @@ function TopSearchBar() {
 
   const [LoadingState, setloadingState] = useState(false);
 
-  const [showPopup, setShowPopup] = useState(true);
+  const [showPopup, setShowPopup] = useState(false);
 
   const [tougleInput, setTougleinput] = useState(false);
 
@@ -35,7 +35,7 @@ function TopSearchBar() {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     setloadingState(true);
-
+    setTougleinput(false)
     console.log("User input:", userinput);
 
     try {
@@ -130,16 +130,37 @@ function TopSearchBar() {
                   onClick={() => setTougleinput(true)}
                 />
                 <div>
-                  <button
-                    type="submit"
-                    onClick={HandleSubmit}
-                    className="generate-btn"
-                  >
-                    Generate
-                  </button>
+
+                  {
+
+                        LoadingState ?
+                        <button className="generate-btn" >loading..</button>
+                        :
+                        <button
+                        type="submit"
+                        onClick={HandleSubmit}
+                        className="generate-btn"
+                      >
+                        Generate
+                      </button>
+                  }
+                
                 </div>
 
-                {/* new component */}
+               {/* 
+               
+               
+               
+               
+                 {
+              LoadingState ? 
+              <button className="loading-input-btn1" >loading..</button>
+
+              :
+              <button className="generate-input-btn1" onClick={HandleSubmit}>Generate</button>
+
+            }
+               */}
               </div>
             </div>
           )}
