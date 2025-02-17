@@ -187,6 +187,7 @@
   }
   .generate-input-btn1{
     /* width: 100%; */
+    
     display: flex;
     background-color: black;
     color: white;

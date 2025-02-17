@@ -134,7 +134,7 @@ function TopSearchBar() {
                   {
 
                         LoadingState ?
-                        <button className="generate-btn" >loading..</button>
+                        <button className="generate-btn-loading" >loading..</button>
                         :
                         <button
                         type="submit"
