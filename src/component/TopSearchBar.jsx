@@ -79,6 +79,8 @@ function TopSearchBar() {
       setimageStore(response.data.images);
 
       console.log("response success", response.data.images);
+      console.log("category", response.data.images.category);
+      console.log("user prompt", response.data.images.user_prompt);
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -89,8 +91,7 @@ function TopSearchBar() {
     getAllimage();
   }, []);
 
-
-
+  
   //calling Top APi
 
 
