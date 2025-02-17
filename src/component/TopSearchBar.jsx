@@ -19,7 +19,7 @@ const LoadingComponent = () => {
 function TopSearchBar() {
   const [imagestore, setimageStore] = useState();
 
-  const [imageUrl, setImageUrl] = useState();
+  const [imageUrl, setImageUrl] = useState([]);
 
   const [LoadingState, setloadingState] = useState(false);
 
@@ -88,6 +88,31 @@ function TopSearchBar() {
   useEffect(() => {
     getAllimage();
   }, []);
+
+
+
+  //calling Top APi
+
+
+  const [TopStrore, setTopStore] = useState([])
+
+  const Top = async () => {
+    try {
+      const response = await axios.get(
+        "http://127.0.0.1:5000/get_images_by_category/top"
+      );
+      // seTimage(response.data)      setimageStore(response.data.images);
+        setTopStore(response.data.images)
+
+        console.log("topstore", TopStrore);
+      console.log("response success", response.data.images);
+      console.log("success");
+    } catch (error) {
+      console.log(error.error);
+    }
+  };
+
+
 
   const loading = () => {
     return (
@@ -202,7 +227,7 @@ function TopSearchBar() {
           <button className="menu-btn">Explore</button>
           <button className="menu-btn">Following</button>
 
-          <button className="menu-btn">Top</button>
+          <button className="menu-btn"  onClick={Top}>Top</button>
 
           <button className="menu-btn">People</button>
           <button className="menu-btn">Product</button>
@@ -215,14 +240,23 @@ function TopSearchBar() {
 
         {/* imagelist -container */}
 
-        <div className="map-image-container">
+        {/* <div className="map-image-container">
           {imagestore &&
             imagestore.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
               </div>
             ))}
-        </div>
+        </div> */}
+
+        {Array.isArray(imageUrl) && imageUrl.length > 0 &&
+            imagestore.map((image, index) => (
+              <div key={index} className="genered-image">
+                <img src={image.image_url} alt="image" />
+              </div>
+            ))}
+
+
       </div>
     </>
   );
