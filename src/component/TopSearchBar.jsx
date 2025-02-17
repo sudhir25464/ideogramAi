@@ -19,7 +19,7 @@ const LoadingComponent = () => {
 function TopSearchBar() {
   const [imagestore, setimageStore] = useState();
 
-  const [imageUrl, setImageUrl] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
 
   const [LoadingState, setloadingState] = useState(false);
 
@@ -44,9 +44,11 @@ function TopSearchBar() {
         userinput
       );
 
+
+      console.log("whole object"+response);
       // setUserInput(response);
-      setImageUrl(response.data.image_url);
-      console.log("Data sent successfully:", response.data);
+      setImageUrl(response.image_data.image_url);
+      console.log("Data sent successfully:",  response.image_data.image_url );
 
       // alert("Form submitted successfully!");
 
