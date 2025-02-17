@@ -50,7 +50,7 @@ function TopSearchBar() {
         const backendresponse = response.data
         console.log("backend response:", backendresponse)
       // setUserInput(response);
-      setImageUrl(response.data.images);
+      setImageUrl(response.data);
       console.log("Data sent successfully:",  imageUrl );
 
       // alert("Form submitted successfully!");
@@ -259,7 +259,7 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
             imageUrl.map((popimage,index)=>{
 
               <div className="pop-inner-image"  key={index} >
-              <img src={popimage.image_url} alt="Popup" className="popup-image" />
+              <img src={popimage.images.image_url} alt="Popup" className="popup-image" />
               </div>
             })
           }
