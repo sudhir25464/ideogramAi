@@ -45,10 +45,10 @@ function TopSearchBar() {
       );
 
 
-      console.log("whole object"+response);
+      console.log("whole object", response);
       // setUserInput(response);
-      setImageUrl(response.image_data.image_url);
-      console.log("Data sent successfully:",  response.image_data.image_url );
+      setImageUrl(response.data.image_url);
+      console.log("Data sent successfully:",  response.data.image_url );
 
       // alert("Form submitted successfully!");
 
