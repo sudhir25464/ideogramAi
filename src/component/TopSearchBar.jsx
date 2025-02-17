@@ -45,7 +45,10 @@ function TopSearchBar() {
       );
 
 
-      console.log("whole object", response);
+      console.log("whole object", response.data);
+
+        const backendresponse = response.data
+        console.log("backend response:", backendresponse)
       // setUserInput(response);
       setImageUrl(response.data.images);
       console.log("Data sent successfully:",  imageUrl );
