@@ -300,7 +300,7 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
 
 
           {Array.isArray(imageUrl) && imageUrl.length > 0 &&
-            imagestore.map((image, index) => (
+            imageUrl.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
               </div>
