@@ -302,7 +302,7 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
           {Array.isArray(imageUrl) && imageUrl.length > 0 &&
             imageUrl.map((image, index) => (
               <div key={index} className="genered-image">
-                <img src={image.image_url} alt="image" />
+                <img src={image.images.image_url} alt="image" />
               </div>
             ))}
           {/* <img src={imageUrl} alt="Popup" className="popup-image" />
