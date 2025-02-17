@@ -120,12 +120,12 @@ function TopSearchBar() {
   const Top = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:5000/get_images_by_category/top"
+        "http://127.0.0.1:5000/get_images_by_category/people"
       );
       // seTimage(response.data)      setimageStore(response.data.images);
         setTopStore(response.data.images)
 
-        console.log("topstore", TopStrore);
+        console.log("people", TopStrore);
       console.log("response success", response.data);
       console.log("success");
     } catch (error) {
@@ -262,8 +262,8 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {filterCategory &&
-            filterCategory.map((image, index) => (
+          {imagestore &&
+            imagestore.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
 
