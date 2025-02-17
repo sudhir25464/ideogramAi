@@ -253,10 +253,10 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
         <div className="show-pop-image-container">
 
           { imageUrl &&
-            imageUrl.map((image,index)=>{
+            imageUrl.map((popimage,index)=>{
 
               <div className="pop-inner-image"  key={index} >
-              <img src={image.image_url} alt="Popup" className="popup-image" />
+              <img src={popimage.image_url} alt="Popup" className="popup-image" />
               </div>
             })
           }
