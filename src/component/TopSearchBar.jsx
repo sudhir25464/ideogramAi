@@ -19,6 +19,8 @@ const LoadingComponent = () => {
 function TopSearchBar() {
   const [imagestore, setimageStore] = useState();
 
+  const [filterCategory, setFiltercategory] = useState()
+
   const [imageUrl, setImageUrl] = useState();
 
   const [LoadingState, setloadingState] = useState(false);
@@ -51,6 +53,10 @@ function TopSearchBar() {
         console.log("backend response:", backendresponse)
       // setUserInput(response);
       setImageUrl(backendresponse.images);
+
+      // store data for filter
+    
+
       console.log("Data sent successfully:",  imageUrl );
 
       // alert("Form submitted successfully!");
@@ -64,6 +70,12 @@ function TopSearchBar() {
     setloadingState(false);
   };
 
+
+  // const filterCtogoryfunction = {
+
+  // }
+
+
   const clearUserInput = () => {
     setUserInput({ prompt: "" });
   };
@@ -76,11 +88,19 @@ function TopSearchBar() {
         "http://127.0.0.1:5000/get_images_by_category/explore"
       );
       // seTimage(response.data);
+
+      
       setimageStore(response.data.images);
 
-      console.log("response success", response.data.images);
-      console.log("category", response.data.images.category);
-      console.log("user prompt", response.data.images.user_prompt);
+
+
+      const allliamgeResponse = response.data.images;
+      // console.log("response success", response.data.images);
+      // console.log("category", response.data.images.category);
+      // console.log("user prompt", response.data.images.user_prompt);
+      setFiltercategory(allliamgeResponse);
+
+
       console.log("success");
     } catch (error) {
       console.log(error.error);
@@ -242,11 +262,15 @@ function TopSearchBar() {
         {/* imagelist -container */}
 
         <div className="map-image-container">
-          {imagestore &&
-            imagestore.map((image, index) => (
+          {filterCategory &&
+            filterCategory.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
+
+                {console.log("category2",image.categories)}
+                {console.log("userprompt22",image.user_prompt)}
               </div>
+             
             ))}
         </div>
 
