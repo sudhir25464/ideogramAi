@@ -1,0 +1,33 @@
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 50px;
+    padding: 8px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .search-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    width: 0;
+    opacity: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .expanded .search-input {
+    width: 160px;
+    opacity: 1;
+  }
+  

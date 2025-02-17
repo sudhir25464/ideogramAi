@@ -6,6 +6,7 @@ import axios from "axios";
 import "../CSS/pop.css";
 import TougleInput from "./TougleInput";
 
+
 const LoadingComponent = () => {
   return (
     <div className="loading-container">
@@ -95,12 +96,12 @@ function TopSearchBar() {
 
 
       // const allliamgeResponse = response.data.images;
-      // console.log("response success", response.data.images);
+      console.log("response success", response.data.images);
       // console.log("category", response.data.images.category);
       // console.log("user prompt", response.data.images.user_prompt);
       // setFiltercategory(allliamgeResponse);
 
-      console.log(filterCategory);
+      // console.log(filterCategory);
 
 
       console.log("success");
@@ -130,19 +131,14 @@ function TopSearchBar() {
       );
       // seTimage(response.data)      setimageStore(response.data.images);
         setTopStore(response.data.images)
-
-        console.log("people", TopStrore);
+        console.log("people", TopStrore)
       console.log("response success", response.data);
       console.log("success");
     } catch (error) {
       console.log(error.error);
     }
   };
-
-
-
     // for filter  
-
     const filterfunction= (cat) => {
       if (!TopStrore) {
         console.error("TopStrore is undefined");
@@ -267,12 +263,16 @@ function TopSearchBar() {
 
       <div className="filter-menu-container">
         <div className="inner-menu-container">
+         <div class="menu-search-container">
+          <input type="text" class="menu-search-input" placeholder="Search..."/>
+          <div class="menu-search-icon">🔍</div>
+        </div> 
           <button className="menu-btn">Explore</button>
           <button className="menu-btn">Following</button>
 
-          <button className="menu-btn"  onClick={Top} >Top</button>
+          <button className="menu-btn"   >Top</button>
 
-          <button className="menu-btn"  onClick={()=>filterfunction("people")}>People</button>
+          <button className="menu-btn" >People</button>
           <button className="menu-btn">Product</button>
 
           <button className="menu-btn">Nature</button>
@@ -281,7 +281,7 @@ function TopSearchBar() {
           <button className="menu-btn">T-shirt</button>
         </div>
 
-        {/* imagelist -container */}
+        {/* imagelist - for hoame page  main - container */}
 
         <div className="map-image-container">
           {imagestore &&
@@ -289,19 +289,12 @@ function TopSearchBar() {
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
 
-                {console.log("category2",image.categories)}
-                {console.log("userprompt22",image.user_prompt)}
               </div>
              
             ))}
         </div>
 
-        {/* {Array.isArray(imageUrl) && imageUrl.length > 0 &&
-            imagestore.map((image, index) => (
-              <div key={index} className="genered-image">
-                <img src={image.image_url} alt="image" />
-              </div>
-            ))} */}
+     
 
 
       </div>
@@ -346,12 +339,16 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
           } */}
 
 
+
+        {/*  show-pop  conatainer ,  for  maping  */}
+
           { imageUrl &&
             imageUrl.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
               </div>
             ))}
+
           {/* <img src={imageUrl} alt="Popup" className="popup-image" />
           <img src={imageUrl} alt="Popup" className="popup-image" />
           <img src={imageUrl} alt="Popup" className="popup-image" />

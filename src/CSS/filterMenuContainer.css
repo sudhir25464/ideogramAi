@@ -7,7 +7,7 @@
    
    /* background-color: aqua; */
 
-
+   
     height: 800px;
     padding: 40px  20px ;
 }
@@ -16,6 +16,11 @@
 
 display: flex;
 gap: 2px;
+
+position: sticky;
+top: 80px;
+
+
 /* background-color: aqua; */
 
 }
@@ -23,12 +28,16 @@ gap: 2px;
 .menu-btn{
     padding:10px 17px;
     border: none;
-
+    background-color: white;
     border-radius: 5px;
 }
 .menu-btn:hover{
-    /* background-color: rgb(240, 235, 228); */
+    background-color: rgb(240, 235, 228);
     
+}
+.menu-btn:active{
+    background-color: rgb(240, 235, 228);
+
 }
 
 
@@ -53,6 +62,38 @@ gap: 2px;
  width: 100%;
 }
 
+
+/* search bar  css */
+ .menu-search-container{
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 2px;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    width: fit-content;
+  }
+  
+  .menu-search-input {
+    width: 0;
+    opacity: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .menu-search-icon {
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .menu-search-container:hover .menu-search-input {
+    width: 150px;
+    opacity: 1;
+  } 
+  
 @media(max-width:900px){
 
     .inner-menu-container{
