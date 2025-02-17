@@ -48,7 +48,7 @@ function TopSearchBar() {
       console.log("whole object", response);
       // setUserInput(response);
       setImageUrl(response.data.images);
-      console.log("Data sent successfully:",  response.data.images );
+      console.log("Data sent successfully:",  imageUrl );
 
       // alert("Form submitted successfully!");
 
@@ -252,7 +252,7 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
 
         <div className="show-pop-image-container">
 
-          { imageUrl&&
+          { imageUrl &&
             imageUrl.map((image,index)=>{
 
               <div className="pop-inner-image"  key={index} >
