@@ -47,8 +47,8 @@ function TopSearchBar() {
 
       console.log("whole object", response);
       // setUserInput(response);
-      setImageUrl(response.data.image_url);
-      console.log("Data sent successfully:",  response.data.image_url );
+      setImageUrl(response.data.images);
+      console.log("Data sent successfully:",  response.data.images );
 
       // alert("Form submitted successfully!");
 
