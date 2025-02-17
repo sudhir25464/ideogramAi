@@ -240,21 +240,21 @@ function TopSearchBar() {
 
         {/* imagelist -container */}
 
-        {/* <div className="map-image-container">
+        <div className="map-image-container">
           {imagestore &&
             imagestore.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
               </div>
             ))}
-        </div> */}
+        </div>
 
-        {Array.isArray(imageUrl) && imageUrl.length > 0 &&
+        {/* {Array.isArray(imageUrl) && imageUrl.length > 0 &&
             imagestore.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_url} alt="image" />
               </div>
-            ))}
+            ))} */}
 
 
       </div>
@@ -288,7 +288,7 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
         </div>
 
         <div className="show-pop-image-container">
-
+{/* 
           { imageUrl &&
             imageUrl.map((popimage,index)=>{
 
@@ -296,7 +296,15 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
               <img src={popimage.images.image_url} alt="Popup" className="popup-image" />
               </div>
             })
-          }
+          } */}
+
+
+          {Array.isArray(imageUrl) && imageUrl.length > 0 &&
+            imagestore.map((image, index) => (
+              <div key={index} className="genered-image">
+                <img src={image.image_url} alt="image" />
+              </div>
+            ))}
           {/* <img src={imageUrl} alt="Popup" className="popup-image" />
           <img src={imageUrl} alt="Popup" className="popup-image" />
           <img src={imageUrl} alt="Popup" className="popup-image" />
