@@ -19,7 +19,7 @@ const LoadingComponent = () => {
 function TopSearchBar() {
   const [imagestore, setimageStore] = useState();
 
-  const [imageUrl, setImageUrl] = useState([]);
+  const [imageUrl, setImageUrl] = useState();
 
   const [LoadingState, setloadingState] = useState(false);
 
