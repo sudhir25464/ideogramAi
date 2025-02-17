@@ -94,11 +94,13 @@ function TopSearchBar() {
 
 
 
-      const allliamgeResponse = response.data.images;
+      // const allliamgeResponse = response.data.images;
       // console.log("response success", response.data.images);
       // console.log("category", response.data.images.category);
       // console.log("user prompt", response.data.images.user_prompt);
-      setFiltercategory(allliamgeResponse);
+      // setFiltercategory(allliamgeResponse);
+
+      console.log(filterCategory);
 
 
       console.log("success");
@@ -109,18 +111,22 @@ function TopSearchBar() {
 
   useEffect(() => {
     getAllimage();
+   
   }, []);
 
   
+
+
   //calling Top APi
 
 
-  const [TopStrore, setTopStore] = useState([])
+
+  const [TopStrore, setTopStore] = useState()
 
   const Top = async () => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:5000/get_images_by_category/people"
+        "http://127.0.0.1:5000/get_images_by_category/"
       );
       // seTimage(response.data)      setimageStore(response.data.images);
         setTopStore(response.data.images)
@@ -132,6 +138,22 @@ function TopSearchBar() {
       console.log(error.error);
     }
   };
+
+
+
+    // for filter  
+
+    const filterfunction= (cat) => {
+      if (!TopStrore) {
+        console.error("TopStrore is undefined");
+        return;
+    }
+      const updatedData = TopStrore.filter((x) => x.category === cat);
+      setFiltercategory(updatedData);
+  
+      console.log("  filterd  image store data",filterCategory);
+  
+  }
 
 
 
@@ -248,9 +270,9 @@ function TopSearchBar() {
           <button className="menu-btn">Explore</button>
           <button className="menu-btn">Following</button>
 
-          <button className="menu-btn"  onClick={Top}>Top</button>
+          <button className="menu-btn"  onClick={Top} >Top</button>
 
-          <button className="menu-btn">People</button>
+          <button className="menu-btn"  onClick={()=>filterfunction("people")}>People</button>
           <button className="menu-btn">Product</button>
 
           <button className="menu-btn">Nature</button>
