@@ -18,6 +18,7 @@ const LoadingComponent = () => {
 };
 
 function TopSearchBar() {
+  const [isOpen, setIsOpen] = useState(false);
   const [imagestore, setimageStore] = useState();
 
   const [filterCategory, setFiltercategory] = useState()
@@ -116,6 +117,7 @@ function TopSearchBar() {
   }, []);
 
   
+  
 
 
   //calling Top APi
@@ -163,12 +165,7 @@ function TopSearchBar() {
 
   return (
     <>
-      {/* {
-  LoadingState?
-<button >Loading...</button>
-:
-<button >Genetrate</button>
-} */}
+   
 
       <div className="top-search-bar">
         <div className="top-search-bar-text">
@@ -253,20 +250,39 @@ function TopSearchBar() {
         </div>
       </div>
 
-      {/* {
-        imageUrl?
-        <img src={imageUrl} />
-        :""
-      } */}
+  
 
       {/* bottom-section    filter-menu*/}
 
       <div className="filter-menu-container">
         <div className="inner-menu-container">
-         <div class="menu-search-container">
-          <input type="text" class="menu-search-input" placeholder="Search..."/>
-          <div class="menu-search-icon">🔍</div>
-        </div> 
+
+
+          {/* serch bar icon */}
+          <div className={`searching-container ${isOpen ? "open" : ""}`}>
+      <input
+        type="text"
+        className="searching-input"
+        placeholder="Search..."
+      />
+      <div className="searching-icon" onClick={() => setIsOpen(!isOpen)}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="22"
+          height="22"
+          fill="inherit"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="inherit"
+            d="M4.5 10a5.5 5.5 0 1111 0 5.5 5.5 0 01-11 0zM10 3a7 7 0 104.391 12.452l5.329 5.328a.75.75 0 101.06-1.06l-5.328-5.329A7 7 0 0010 3z"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+
+
           <button className="menu-btn">Explore</button>
           <button className="menu-btn">Following</button>
 

@@ -10,13 +10,15 @@
    
     height: 800px;
     padding: 40px  20px ;
+  
+
 }
 
 .inner-menu-container{
 
 display: flex;
 gap: 2px;
-
+flex-wrap: wrap;
 position: sticky;
 top: 80px;
 
@@ -28,17 +30,15 @@ top: 80px;
 .menu-btn{
     padding:10px 17px;
     border: none;
-    background-color: white;
+ 
     border-radius: 5px;
+    background-color:rgb(250,250,250) ;
 }
 .menu-btn:hover{
-    background-color: rgb(240, 235, 228);
+    background-color: rgba(216, 215, 213, 0.699);
     
 }
-.menu-btn:active{
-    background-color: rgb(240, 235, 228);
 
-}
 
 
 .map-image-container{
@@ -64,40 +64,49 @@ top: 80px;
 
 
 /* search bar  css */
- .menu-search-container{
-    display: flex;
-    align-items: center;
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 2px;
-    background-color: white;
-    transition: all 0.3s ease-in-out;
-    width: fit-content;
-  }
+
+.searching-container {
+  display: flex;
+  align-items: center;
+
+  width: 30px; 
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+  /* background: white; */
+}
+
+.searching-input{
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 0;
+  opacity: 0;
+  transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.searching-container.open {
+  width: 200px; 
+}
+
+.searching-container.open .searching-input {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  opacity: 1;
+}
+
+.search-icon {
+  cursor: pointer;
+  padding-left: 10px;
+} 
   
-  .menu-search-input {
-    width: 0;
-    opacity: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    transition: width 0.3s ease-in-out, opacity 0.3s ease-in-out;
-  }
-  
-  .menu-search-icon {
-    cursor: pointer;
-    padding: 5px;
-  }
-  
-  .menu-search-container:hover .menu-search-input {
-    width: 150px;
-    opacity: 1;
-  } 
-  
-@media(max-width:900px){
+  @media(max-width:900px){
 
     .inner-menu-container{
         position: fixed;
         top: 0;
+
+        /* background-color: whitesmoke; */
     }
 }

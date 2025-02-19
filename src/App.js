@@ -4,33 +4,27 @@ import ButtomNavbar from './component/ButtomNavbar';
 import GeneratedImageMain from './component/GeneratedImageMain';
 import Navbar from './component/Navbar';
 import TopHeader from './component/TopHeader';
+import Login from "./component/Login"
 import TopSearchBar from './component/TopSearchBar';
 import TougleInput from './component/TougleInput';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 function App() {
   return (
+<>
 
+  <BrowserRouter>
+  <Routes>
+    <Route path="/" exact element={<HomePage />} />
+    <Route path="/login" exact element={<Login />} />
+    <Route path="/genimg" exact element={<GeneratedImageMain/>} />
+  </Routes>
+  
+  </BrowserRouter>
 
+    
 
-    <div className="app-conatiner">
-
-      {/* side-navbar */}
-
-      <div className="side-nav-section">
-        <Navbar />
-      
-      </div>
-
-      <ButtomNavbar/>
-
-      {/*  main-container section */}
-      <div className="main-app-container">
-        <TopHeader/>
-      
-        <TopSearchBar/>
-        {/* <GeneratedImageMain/> */}
-
-      </div>
-    </div>
+    </>
   );
 }
 
