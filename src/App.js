@@ -9,6 +9,7 @@ import TopSearchBar from './component/TopSearchBar';
 import TougleInput from './component/TougleInput';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
+import PopSmallInput from './component/PopSmallInput';
 function App() {
   return (
 <>
@@ -18,6 +19,7 @@ function App() {
     <Route path="/" exact element={<HomePage />} />
     <Route path="/login" exact element={<Login />} />
     <Route path="/genimg" exact element={<GeneratedImageMain/>} />
+    <Route path="/sminput" exact element={<PopSmallInput />} />
   </Routes>
   
   </BrowserRouter>

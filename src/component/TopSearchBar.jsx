@@ -48,7 +48,7 @@ function TopSearchBar() {
         userinput
       );
 
-
+      console.log(userinput)
       console.log("whole object", response.data);
 
         const backendresponse = response.data

@@ -34,7 +34,12 @@
     border: 0.5px solid rgba(0, 0, 0, 0.148);
   }
   
-
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
   .left-side-input-container{
 
 

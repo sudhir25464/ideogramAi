@@ -1,9 +1,39 @@
 import React from "react";
 import "../CSS/login.css";
 import loginimg from "../image/image-16.jpg";
+
+import axios from "axios";
 function Login() {
+
+    
+
+
+
+    const GoogleLogin = async (response) => {
+      try {
+        const backendURL = "https://your-backend.com/api/auth/google"; // Replace with your backend URL
+  
+        // Send the Google token to the backend
+        const res = await axios.post(backendURL, {
+          token: response.credential,
+        });
+  
+        console.log("Backend Response:", res.data); // Handle user data
+  
+        // Store user details (e.g., in local storage)
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+      } catch (error) {
+        console.error("Login Error:", error);
+      }
+    };
+
+  
+
+
+  
   return (
     <div className="main-login-container">
+
       <div className="inner-login-container">
         <div className="icon-style">
 
@@ -25,13 +55,13 @@ function Login() {
         <div className="login-image-container">
           <img src={loginimg}></img>
         </div>
-        <div className="login-with-btn">
+        <button className="login-with-btn"  onClick={GoogleLogin}>
 
   
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 48 48"
           >
             <path
@@ -54,12 +84,12 @@ function Login() {
 
      
           Continue with Google
-        </div>
+        </button>
         <div className="login-with-btn">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 50 50"
             fill="#ffffff"
           >
@@ -75,7 +105,8 @@ function Login() {
         </div>
       </div>
 
-      <div className="login-footer-links-container">
+       <div className="login-footer-links-container">
+        <div className="footer-link-text">
         <span>Docs</span>
 
         <span>Pricing</span>
@@ -83,7 +114,7 @@ function Login() {
         <span>Privacy</span>
         <span>Terms</span>
         <span>Careers</span>
-     
+        </div>
 
         <div className="login-fooetr-icon-container">
           <div>
@@ -172,7 +203,9 @@ function Login() {
             </svg>
           </div>
         </div>
-      </div>
+      </div> 
+
+
     </div>
   );
 }

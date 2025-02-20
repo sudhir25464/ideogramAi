@@ -9,7 +9,7 @@
 
    
     height: 800px;
-    padding: 40px  20px ;
+    padding: 40px  0px ;
   
 
 }
@@ -17,7 +17,7 @@
 .inner-menu-container{
 
 display: flex;
-gap: 2px;
+gap: 1px;
 flex-wrap: wrap;
 position: sticky;
 top: 80px;
@@ -28,11 +28,12 @@ top: 80px;
 }
  
 .menu-btn{
-    padding:10px 17px;
+    padding:7px 10px;
     border: none;
  
     border-radius: 5px;
-    background-color:rgb(250,250,250) ;
+    background-color: rgb(250,250,250);
+   
 }
 .menu-btn:hover{
     background-color: rgba(216, 215, 213, 0.699);
@@ -103,10 +104,34 @@ top: 80px;
   
   @media(max-width:900px){
 
+
+    .filter-menu-containe{
+      padding: 0;
+    }
     .inner-menu-container{
         position: fixed;
         top: 0;
+        display: flex;
+        gap: 2px;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+        background-color: rgb(250,250,250);
+        width: 100%;
+        padding: 5px;
+     
 
         /* background-color: whitesmoke; */
     }
+    .menu-btn{
+      padding:2px 5px;
+      font-size: 12px;
+      border: none;
+   
+      /* border-radius: 5px; */
+      background-color: rgb(250,250,250);
+     
+  }
+
+  
+    
 }
