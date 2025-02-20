@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../CSS/login.css";
 import loginimg from "../image/image-16.jpg";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 function Login() {
 
@@ -22,7 +22,7 @@ function Login() {
           // token: response.credential,
         });
   
-        console.log("Backend Response:", res.data); // Handle user data
+        console.log("Backend Response:", res.user_data); // Handle user data
   
         // Store user details (e.g., in local storage)
         localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -32,6 +32,55 @@ function Login() {
     };
 
   
+    
+
+  
+
+        // fetch  resr
+
+
+        const navigate = useNavigate();
+
+        const userSession = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:5000/session-data");
+                const sessionData = response;
+    
+                console.log("Session Data:", sessionData);
+    
+                if (sessionData) {
+                    navigate("/"); // Redirect to homepage if session exists
+                }
+            } catch (error) {
+                console.log("Session data is null or error occurred");
+            }
+        };
+    
+        useEffect(() => {
+            userSession();
+        }, []);
+
+    //     const user_session =   async()=>{
+
+
+    //       try {
+    //                   const session_data = await axios.get('http://127.0.0.1:5000/session-data')
+    //                   console.log("Session Data:", session_data)
+    //       } catch (error) {
+            
+
+    //         console.log(error)
+
+    //         console.log("seestion data is null")
+    //       }
+    //     }
+    //     useEffect(()=>{
+
+
+    //       user_session();
+    // })
+    
+    
 
 
   

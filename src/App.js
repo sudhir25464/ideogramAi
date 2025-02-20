@@ -11,6 +11,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import PopSmallInput from './component/PopSmallInput';
 function App() {
+
+
+
+      
   return (
 <>
 
