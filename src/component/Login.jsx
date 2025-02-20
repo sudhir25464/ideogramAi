@@ -49,6 +49,7 @@ function Login() {
                 console.log("Session Data:", sessionData);
     
                 if (sessionData) {
+                  alert("seesion  active");
                     navigate("/"); // Redirect to homepage if session exists
                 }
             } catch (error) {
@@ -60,26 +61,6 @@ function Login() {
             userSession();
         }, []);
 
-    //     const user_session =   async()=>{
-
-
-    //       try {
-    //                   const session_data = await axios.get('http://127.0.0.1:5000/session-data')
-    //                   console.log("Session Data:", session_data)
-    //       } catch (error) {
-            
-
-    //         console.log(error)
-
-    //         console.log("seestion data is null")
-    //       }
-    //     }
-    //     useEffect(()=>{
-
-
-    //       user_session();
-    // })
-    
     
 
 
