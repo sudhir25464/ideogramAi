@@ -9,9 +9,13 @@ function Login() {
 
 
 
-    const GoogleLogin = async (response) => {
+    const GoogleLogin = async () => {
+
+
+      window.open("http://127.0.0.1:5000/auth/google", "_self")
+      
       try {
-        const backendURL = "http:127.0.0.1.5000/login"; // Replace with your backend URL
+        const backendURL = "http:127.0.0.1:5000/login"; // Replace with your backend URL  google  email
   
         // Send the Google token to the backend
         const res = await axios.post(backendURL ,{
