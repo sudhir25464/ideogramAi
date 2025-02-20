@@ -11,11 +11,11 @@ function Login() {
 
     const GoogleLogin = async (response) => {
       try {
-        const backendURL = "https://your-backend.com/api/auth/google"; // Replace with your backend URL
+        const backendURL = "http:127.0.0.1.5000/login"; // Replace with your backend URL
   
         // Send the Google token to the backend
-        const res = await axios.post(backendURL, {
-          token: response.credential,
+        const res = await axios.post(backendURL ,{
+          // token: response.credential,
         });
   
         console.log("Backend Response:", res.data); // Handle user data
