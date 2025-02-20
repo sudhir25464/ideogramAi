@@ -12,8 +12,8 @@ function Login() {
     const GoogleLogin = async () => {
 
 
-      window.open("http://127.0.0.1:5000/auth/google", "_self")
-      
+      window.open("http://127.0.0.1:5000/login", "_self")
+
       try {
         const backendURL = "http:127.0.0.1:5000/login"; // Replace with your backend URL  google  email
   
