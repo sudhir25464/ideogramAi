@@ -8,6 +8,9 @@ import PopSmallInput from "./component/PopSmallInput";
 import axios from "axios";
 
 function App() {
+
+
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const [seestion, setsesion] = useState(null)
@@ -15,53 +18,47 @@ function App() {
 
 
   
-  const userSession = async () => {
-    try {
-        const response = await axios.get("http://127.0.0.1:5000/session-data" , {widthCredentials: true});
+//   const userSession = async () => {
+//     try {
+//         const response = await axios.get("http://127.0.0.1:5000/session-data" , {widthCredentials: true});
 
 
-        // const sessionData = response.session;
-        // console.log("Session Data:", sessionData);
-        // if (sessionData) {
-        //   alert("seesion  active");
-        
-        // }
 
-        const sessiondata = response.data
+//         const sessiondata = response
 
-        console.log("Session Data:",sessiondata)
+//         console.log("Session Data:",sessiondata)
 
-        setsesion(sessiondata)
-        if(sessiondata){
-          setIsAuthenticated(true)
-        }
+//         setsesion(sessiondata)
+//         if(sessiondata){
+//           setIsAuthenticated(true)
+//         }
 
 
 
 
-    } catch (error) {
+//     } catch (error) {
     
-        console.log("Session data is null or error occurred");
+//         console.log("Session data is null or error occurred");
+//     }
+// }
+
+
+// useEffect(()=>{
+
+
+//   userSession()
+// },[])
+
+  useEffect(() => {
+
+    const user = localStorage.getItem("session");
+
+
+    console.log("user app data", user);
+    if (user) {
+      setIsAuthenticated(true);
     }
-}
-
-
-useEffect(()=>{
-
-
-  userSession()
-},[])
-
-  // useEffect(() => {
-
-  //   const user = localStorage.getItem("session");
-
-
-  //   console.log("user app data", user);
-  //   if (user) {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
+  }, []);
 
   return (
     <BrowserRouter>

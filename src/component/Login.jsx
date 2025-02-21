@@ -16,18 +16,16 @@ function Login() {
       window.open("http://127.0.0.1:5000/login", "_self")
 
       try {
-        const backendURL = "http:127.0.0.1:5000/login"; 
+        const backendURL = "http://127.0.0.1:5000/session-data" ; 
       
         const res = await axios.post(backendURL ,{
-    
+          widthCredentials: true
         });
   
         console.log("Backend Response:", res.session); 
-  
-       
-
         console.log("Login user data", res.session);
         // localStorage.setItem("user", JSON.stringify(res.data.user));
+
 
 
         if (res.session) {
@@ -50,20 +48,20 @@ function Login() {
 
         // const navigate = useNavigate();
 
-        const userSession = async () => {
-            try {
-                const response = await axios.get("http://127.0.0.1:5000/session-data");
-                const sessionData = response.session;
-                console.log("Session Data:", sessionData);
-                if (sessionData) {
-                  alert("seesion  active");
-                    navigate("/"); 
-                }
-            } catch (error) {
+        // const userSession = async () => {
+        //     try {
+        //         const response = await axios.get("http://127.0.0.1:5000/session-data");
+        //         const sessionData = response.session;
+        //         console.log("Session Data:", sessionData);
+        //         if (sessionData) {
+        //           alert("seesion  active");
+        //             navigate("/"); 
+        //         }
+        //     } catch (error) {
             
-                console.log("Session data is null or error occurred");
-            }
-        };
+        //         console.log("Session data is null or error occurred");
+        //     }
+        // };
     
         // useEffect(() => {
         //     userSession();
