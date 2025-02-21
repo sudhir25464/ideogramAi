@@ -9,16 +9,58 @@ import PopSmallInput from "./component/PopSmallInput";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    // Check if user is logged in (from localStorage or API)
-    const user = localStorage.getItem("session");
+  const [seestion, setsesion] = useState(null)
 
 
-    console.log("user app data", user);
-    if (user) {
-      setIsAuthenticated(true);
+
+  
+  const userSession = async () => {
+    try {
+        const response = await axios.get("http://127.0.0.1:5000/session-data" , {widthCredentials: true});
+
+
+        // const sessionData = response.session;
+        // console.log("Session Data:", sessionData);
+        // if (sessionData) {
+        //   alert("seesion  active");
+        
+        // }
+
+        const sessiondata = response.data
+
+        console.log("Session Data:",sessiondata)
+
+        setsesion(sessiondata)
+        if(sessiondata){
+          setIsAuthenticated(true)
+        }
+
+
+
+
+    } catch (error) {
+    
+        console.log("Session data is null or error occurred");
     }
-  }, []);
+}
+
+
+useEffect(()=>{
+
+
+  userSession()
+},[])
+
+  // useEffect(() => {
+
+  //   const user = localStorage.getItem("session");
+
+
+  //   console.log("user app data", user);
+  //   if (user) {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
   return (
     <BrowserRouter>
