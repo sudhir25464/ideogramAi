@@ -22,16 +22,16 @@ function Login() {
     
         });
   
-        console.log("Backend Response:", res.user_data); 
+        console.log("Backend Response:", res.session); 
   
        
 
-        console.log("Login user data", res);
+        console.log("Login user data", res.session);
         // localStorage.setItem("user", JSON.stringify(res.data.user));
 
 
-        if (res.data.user_data) {
-          localStorage.setItem("user", JSON.stringify(res.data.user_data));
+        if (res.session) {
+          localStorage.setItem("user", JSON.stringify(res.session));
           
           navigate("/"); // Redirect to home page after login
         }
@@ -53,7 +53,7 @@ function Login() {
         const userSession = async () => {
             try {
                 const response = await axios.get("http://127.0.0.1:5000/session-data");
-                const sessionData = response;
+                const sessionData = response.session;
                 console.log("Session Data:", sessionData);
                 if (sessionData) {
                   alert("seesion  active");
