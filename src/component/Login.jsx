@@ -62,6 +62,8 @@ function Login() {
                 //   alert("seesion  active");
                 //     navigate("/"); 
                 // }
+
+                console.log("nexted session",sessionData);
             } catch (error) {
             
                 console.log("Session data is null or error occurred");
