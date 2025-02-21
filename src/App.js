@@ -1,36 +1,33 @@
+import "./App.css";
+import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import HomePage from "./pages/HomePage";
+import Login from "./component/Login";
+import GeneratedImageMain from "./component/GeneratedImageMain";
+import PopSmallInput from "./component/PopSmallInput";
 
-import './App.css';
-import ButtomNavbar from './component/ButtomNavbar';
-import GeneratedImageMain from './component/GeneratedImageMain';
-import Navbar from './component/Navbar';
-import TopHeader from './component/TopHeader';
-import Login from "./component/Login"
-import TopSearchBar from './component/TopSearchBar';
-import TougleInput from './component/TougleInput';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import PopSmallInput from './component/PopSmallInput';
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    // Check if user is logged in (from localStorage or API)
+    const user = localStorage.getItem("user");
+    if (user) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
-
-      
   return (
-<>
-
-  <BrowserRouter>
-  <Routes>
-    <Route path="/" exact element={<HomePage />} />
-    <Route path="/login" exact element={<Login />} />
-    <Route path="/genimg" exact element={<GeneratedImageMain/>} />
-    <Route path="/sminput" exact element={<PopSmallInput />} />
-  </Routes>
-  
-  </BrowserRouter>
-
-    
-
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* If user is not authenticated, redirect to login */}
+        <Route path="/" element={isAuthenticated ? <HomePage /> : <Navigate to="/login" />} />
+        
+        <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path="/genimg" element={isAuthenticated ? <GeneratedImageMain /> : <Navigate to="/login" />} />
+        <Route path="/sminput" element={isAuthenticated ? <PopSmallInput /> : <Navigate to="/login" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

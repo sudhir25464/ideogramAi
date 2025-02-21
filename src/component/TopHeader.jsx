@@ -1,10 +1,21 @@
 import React from "react";
 import "../CSS/header.css";
-function TopHeader() {
+import { useNavigate } from "react-router-dom";
+function TopHeader({setIsAuthenticated}) {
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    setIsAuthenticated(false);
+    navigate("/login"); // Redirect to login page
+  };
+  
+
   return (
     <div className="top-header">
       <div className="top-header-inner">
-        <button className="upgrate-btn">
+        <button  onClick={handleLogout} className="upgrate-btn">
 
           <span>10</span>
           <svg
@@ -21,7 +32,7 @@ function TopHeader() {
               clip-rule="evenodd"
             ></path>
           </svg>
-          Upgrate
+          Logout
         </button>
       </div>
     </div>
