@@ -33,10 +33,10 @@ function Login() {
         // if (res.session) {
         //   localStorage.setItem("user", JSON.stringify(res.session));
           
-        //   navigate("/"); 
+          navigate("/"); 
 
 
-        userSession();
+        // userSession();
         // }
       } catch (error) {
         console.error("Login Error:", error);

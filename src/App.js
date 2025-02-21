@@ -13,7 +13,26 @@ function App() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const [seestion, setsesion] = useState(null)
+ const [sesionData, setSessionData] =useState(null)
+
+ useEffect(()=>{
+
+  axios.get("http://127.0.0.1:5000/session-data", {
+    withCredentials:true,
+  })
+  .then((response)=>{
+    setSessionData(response.data);
+
+    if(sesionData){
+      isAuthenticated = true;
+    }
+  })
+  .catch((error)=>{
+
+    console.error("erroe fetching data", error)
+  })
+
+ },[])
 
 
 
@@ -49,16 +68,16 @@ function App() {
 //   userSession()
 // },[])
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const user = localStorage.getItem("user");
+  //   const user = localStorage.getItem("user");
 
 
-    console.log("user app data", user);
-    if (user) {
-      setIsAuthenticated(true);
-    }
-  }, []);
+  //   console.log("user app data", user);
+  //   if (user) {
+  //     setIsAuthenticated(true);
+  //   }
+  // }, []);
 
   return (
     <BrowserRouter>
