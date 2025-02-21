@@ -16,7 +16,7 @@ function Login() {
       window.open("http://127.0.0.1:5000/login", "_self")
 
       try {
-        const backendURL = "http://127.0.0.1:5000/login" ; 
+        const backendURL = "http://127.0.0.1:5000/session-data" ; 
       
         const res = await axios.post(backendURL ,{
           widthCredentials: true
@@ -26,25 +26,43 @@ function Login() {
         console.log("Login user data", res.session);
 
         
-        // localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("user", JSON.stringify(res.data));
 
 
 
-        // if (res.session) {
-        //   localStorage.setItem("user", JSON.stringify(res.session));
+        if (res.session) {
+          // localStorage.setItem("user", JSON.stringify(res.data));
           
           navigate("/"); 
-
-
         // userSession();
-        // }
+         }
       } catch (error) {
         console.error("Login Error:", error);
       }
     };
 
   
-    
+  
+//  useEffect(()=>{
+
+//   axios.get("http://127.0.0.1:5000/session-data", {
+//     withCredentials:true,
+//   })
+//   .then((response)=>{
+//     setSessionData(response.data);
+
+//     if(sesionData){
+     
+//     }
+//   })
+//   .catch((error)=>{
+
+//     console.error("erroe fetching data", error)
+//   })
+
+//  },[])
+
+  
 
   
 

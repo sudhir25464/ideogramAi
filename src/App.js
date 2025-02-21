@@ -15,6 +15,8 @@ function App() {
 
  const [sesionData, setSessionData] =useState(null)
 
+//  isAuthenticated = true;
+
  useEffect(()=>{
 
   axios.get("http://127.0.0.1:5000/session-data", {
@@ -24,7 +26,7 @@ function App() {
     setSessionData(response.data);
 
     if(sesionData){
-      isAuthenticated = true;
+     
     }
   })
   .catch((error)=>{
@@ -68,16 +70,16 @@ function App() {
 //   userSession()
 // },[])
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   const user = localStorage.getItem("user");
+    const user = localStorage.getItem("user");
 
 
-  //   console.log("user app data", user);
-  //   if (user) {
-  //     setIsAuthenticated(true);
-  //   }
-  // }, []);
+    console.log("user app data", user);
+    if (user) {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   return (
     <BrowserRouter>
