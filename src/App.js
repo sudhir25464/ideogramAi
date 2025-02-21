@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
 
-    const user = localStorage.getItem("session");
+    const user = localStorage.getItem("user");
 
 
     console.log("user app data", user);
