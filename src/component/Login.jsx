@@ -30,7 +30,7 @@ function Login() {
         // localStorage.setItem("user", JSON.stringify(res.data.user));
 
 
-        if (res.data.user) {
+        if (res.data.user_data) {
           localStorage.setItem("user", JSON.stringify(res.data.user_data));
           
           navigate("/"); // Redirect to home page after login
@@ -50,24 +50,24 @@ function Login() {
 
         // const navigate = useNavigate();
 
-        // const userSession = async () => {
-        //     try {
-        //         const response = await axios.get("http://127.0.0.1:5000/session-data");
-        //         const sessionData = response;
-        //         console.log("Session Data:", sessionData);
-        //         if (sessionData) {
-        //           alert("seesion  active");
-        //             navigate("/"); 
-        //         }
-        //     } catch (error) {
+        const userSession = async () => {
+            try {
+                const response = await axios.get("http://127.0.0.1:5000/session-data");
+                const sessionData = response;
+                console.log("Session Data:", sessionData);
+                if (sessionData) {
+                  alert("seesion  active");
+                    navigate("/"); 
+                }
+            } catch (error) {
             
-        //         console.log("Session data is null or error occurred");
-        //     }
-        // };
+                console.log("Session data is null or error occurred");
+            }
+        };
     
-        // useEffect(() => {
-        //     userSession();
-        // }, []);
+        useEffect(() => {
+            userSession();
+        }, []);
 
     
 
