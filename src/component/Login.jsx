@@ -33,7 +33,7 @@ function Login() {
         if (res.session) {
           localStorage.setItem("user", JSON.stringify(res.session));
           
-          navigate("/"); // Redirect to home page after login
+          navigate("/"); 
         }
       } catch (error) {
         console.error("Login Error:", error);
