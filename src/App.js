@@ -12,6 +12,9 @@ function App() {
   useEffect(() => {
     // Check if user is logged in (from localStorage or API)
     const user = localStorage.getItem("user");
+
+
+    console.log("user app data", user);
     if (user) {
       setIsAuthenticated(true);
     }

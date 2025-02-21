@@ -25,6 +25,8 @@ function Login() {
         console.log("Backend Response:", res.user); 
   
        
+
+        console.log("Login user data", res);
         // localStorage.setItem("user", JSON.stringify(res.data.user));
 
 
