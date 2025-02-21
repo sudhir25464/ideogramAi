@@ -64,6 +64,11 @@ function Login() {
                 // }
 
                 console.log("nexted session",sessionData);
+
+                   localStorage.setItem("user", JSON.stringify(sessionData));
+          
+          navigate("/"); 
+
             } catch (error) {
             
                 console.log("Session data is null or error occurred");
