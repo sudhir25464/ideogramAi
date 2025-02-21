@@ -22,7 +22,7 @@ function Login() {
     
         });
   
-        console.log("Backend Response:", res.user); 
+        console.log("Backend Response:", res.user_data); 
   
        
 
@@ -31,9 +31,9 @@ function Login() {
 
 
         if (res.data.user) {
-          localStorage.setItem("user", JSON.stringify(res.data.user));
+          localStorage.setItem("user", JSON.stringify(res.data.user_data));
           
-          navigate("/home"); // Redirect to home page after login
+          navigate("/"); // Redirect to home page after login
         }
       } catch (error) {
         console.error("Login Error:", error);
