@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import Login from "./component/Login";
 import GeneratedImageMain from "./component/GeneratedImageMain";
 import PopSmallInput from "./component/PopSmallInput";
+import axios from "axios";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
