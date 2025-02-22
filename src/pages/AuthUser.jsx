@@ -1,11 +1,21 @@
 import React from 'react'
 import { useEffect , useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+
+axios.defaults.withCredentials = true;
+
+
 function AuthUser() {
 
 
     const [isUser, setUser] = useState(null);
+
+    const navigate = useNavigate()
+
+    const path = window.location.pathname;
+    console.log("path is :",path)
 
     useEffect(() => {
       axios.get("http://127.0.0.1:5000/session-data")
@@ -18,21 +28,25 @@ function AuthUser() {
 
         //   console.log("Fetched session dataaaaa:", response.data);
         //   setSessionData(response.data);
+
+        if(path === "/login"){
+          navigate("/")
+
+        }
+        
+        
      
         })
         .catch((error) => {
           console.error("Error fetching session data", error);
+          navigate("/login")
         
         });
     }, []);
   
 
 
-    if(!isUser){
 
-
-        return  <Navigate to="login" />
-    }
 
 
   return (
@@ -40,4 +54,4 @@ function AuthUser() {
   )
 }
 
-export default AuthUser
+export default AuthUser
