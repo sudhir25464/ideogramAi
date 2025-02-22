@@ -16,7 +16,7 @@ function Login() {
       window.open("http://127.0.0.1:5000/login", "_self")
 
       try {
-        const backendURL = "http://127.0.0.1:5000/session-data" ; 
+        const backendURL = "http://127.0.0.1:5000/login" ; 
       
         const res = await axios.post(backendURL ,{
           widthCredentials: true
@@ -43,33 +43,6 @@ function Login() {
 
   
   
-//  useEffect(()=>{
-
-//   axios.get("http://127.0.0.1:5000/session-data", {
-//     withCredentials:true,
-//   })
-//   .then((response)=>{
-//     setSessionData(response.data);
-
-//     if(sesionData){
-     
-//     }
-//   })
-//   .catch((error)=>{
-
-//     console.error("erroe fetching data", error)
-//   })
-
-//  },[])
-
-  
-
-  
-
-        // fetch  resr
-
-
-        // const navigate = useNavigate();
 
         const userSession = async () => {
             try {
