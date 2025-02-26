@@ -350,9 +350,9 @@ function TopSearchBar() {
             catgData.map((image, index) => (
               <div key={index} className="genered-image"  >
 
-                <NavLink  to={`/genimg/${image.id}`}>
+                {/* <NavLink  className="navlink" to={`/genimg/${image.id}`}> */}
                 <img src={image.image_urls} alt="loading"  />
-                </NavLink>
+                {/* </NavLink> */}
                
 
               </div>
