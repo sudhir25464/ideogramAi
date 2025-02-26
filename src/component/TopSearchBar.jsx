@@ -18,6 +18,10 @@ const LoadingComponent = () => {
 };
 
 function TopSearchBar() {
+
+  const [filterOption, setFilterOption] = useState("Explore")
+  
+  
   const [isOpen, setIsOpen] = useState(false);
   const [imagestore, setimageStore] = useState();
 
@@ -34,6 +38,15 @@ function TopSearchBar() {
   const [userinput, setUserInput] = useState({
     prompt: "",
     magic_prompt: true,
+
+
+    // "prompt": "A futuristic cityscape",
+    // "magic_prompt": true,
+    aspect_ratio: "1:1",
+    ai_prompt: "on",
+    // "num_images": 1
+
+    
   });
 
   const HandleSubmit = async (e) => {
@@ -42,19 +55,25 @@ function TopSearchBar() {
     setTougleinput(false)
     console.log("User input:", userinput);
 
+
     try {
+      console.log("genrate staer")
       const response = await axios.post(
         "http://127.0.0.1:5000/gen-post",
         userinput
-      );
+      )
+      console.log("genrate end")
 
       console.log(userinput)
+
+
+      console.log("gn-poat-reaponse", response)
       console.log("whole object", response.data);
 
         const backendresponse = response.data
         console.log("backend response:", backendresponse)
       // setUserInput(response);
-      setImageUrl(backendresponse.images);
+      setImageUrl(backendresponse);
 
       // store data for filter
     
@@ -88,16 +107,30 @@ function TopSearchBar() {
     try {
       const response = await axios.get(
         "http://127.0.0.1:5000/get_images_by_category/explore"
+        // http://127.0.0.1:5000/get_images_by_category/explore
       );
       // seTimage(response.data);
 
-      
-      setimageStore(response.data.images);
+
+      console.log("get response",response.data);
+
+      console.log("response success", response.data);
+
+
+      const getalllimagsdata = response.data
+
+
+      console.log("All data", getalllimagsdata)
+      setimageStore(getalllimagsdata.images_data);
+
+    
+
+      // setimageStore(response.data.images_data);
 
 
 
       // const allliamgeResponse = response.data.images;
-      console.log("response success", response.data.images);
+    
       // console.log("category", response.data.images.category);
       // console.log("user prompt", response.data.images.user_prompt);
       // setFiltercategory(allliamgeResponse);
@@ -119,6 +152,7 @@ function TopSearchBar() {
   
   
 
+  console.log("My-app store",imagestore)
 
   //calling Top APi
 
@@ -152,6 +186,16 @@ function TopSearchBar() {
       console.log("  filterd  image store data",filterCategory);
   
   }
+
+
+  const catgData = imagestore&&imagestore.filter( e=> {
+    return e.categories.find( e => e === filterOption) ;
+
+  }
+  )
+
+  console.log("catgData is ", catgData)
+  
 
 
 
@@ -283,31 +327,32 @@ function TopSearchBar() {
 
 
 
-          <button className="menu-btn">Explore</button>
-          <button className="menu-btn">Following</button>
+          <button onClick={ () => setFilterOption("Explore")} className="menu-btn">Explore</button>
+          <button onClick={ () => setFilterOption("Following")} className="menu-btn">Following</button>
+          <button onClick={ () => setFilterOption("Top")} className="menu-btn"   >Top</button>
+          <button onClick={ () => setFilterOption("People")} className="menu-btn" >People</button>
+          <button onClick={ () => setFilterOption("Product")} className="menu-btn">Product</button>
+          <button onClick={ () => setFilterOption("Nature")} className="menu-btn">Nature</button>
+          <button onClick={ () => setFilterOption("Poster")} className="menu-btn">Poster</button>
+          <button onClick={ () => setFilterOption("Logos")} className="menu-btn">Logos</button>
+          <button onClick={ () => setFilterOption("T-shirt")} className="menu-btn">T-shirt</button>
 
-          <button className="menu-btn"   >Top</button>
-
-          <button className="menu-btn" >People</button>
-          <button className="menu-btn">Product</button>
-
-          <button className="menu-btn">Nature</button>
-          <button className="menu-btn">Poster</button>
-          <button className="menu-btn">Logo</button>
-          <button className="menu-btn">T-shirt</button>
         </div>
 
         {/* imagelist - for hoame page  main - container */}
 
         <div className="map-image-container">
-          {imagestore &&
-            imagestore.map((image, index) => (
+          {catgData && catgData.length>0 ?
+            catgData.map((image, index) => (
               <div key={index} className="genered-image">
-                <img src={image.image_url} alt="image" />
+                <img src={image.image_urls} alt="loading" />
+                <div>{image.ai_prompt}</div>
 
               </div>
              
-            ))}
+            ))
+            :"khali hai"
+          }
         </div>
 
      
@@ -359,9 +404,9 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
         {/*  show-pop  conatainer ,  for  maping  */}
 
           { imageUrl &&
-            imageUrl.map((image, index) => (
+            imageUrl.data.image_urls.map((image, index) => (
               <div key={index} className="genered-image">
-                <img src={image.image_url} alt="image" />
+                <img src={image} alt="Loading" />
               </div>
             ))}
 
@@ -373,6 +418,6 @@ const ShowPopComponent = ({ imageUrl, setShowPopup }) => {
       
 
       </div>
-    </div>
-  );
+    </div>
+  );
 };
