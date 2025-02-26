@@ -10,7 +10,7 @@ function GeneratedImageMain() {
 
 
   const { id } = useParams(); // URL se post ID le raha hai
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
     getPostDetails();

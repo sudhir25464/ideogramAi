@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/pop.css";
 import TougleInput from "./TougleInput";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const LoadingComponent = () => {
@@ -348,8 +348,11 @@ function TopSearchBar() {
         <div className="map-image-container">
           {catgData && catgData.length>0 ?
             catgData.map((image, index) => (
-              <div key={index} className="genered-image"  onClick={() => navigate(`/genimg/${image.image_urls.id}`)}>
+              <div key={index} className="genered-image"  >
+
+                <NavLink  to={`/genimg/${image.id}`}>
                 <img src={image.image_urls} alt="loading"  />
+                </NavLink>
                
 
               </div>
