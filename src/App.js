@@ -43,7 +43,7 @@ function App() {
 
         
       
-        <Route path="/genimg" element={<GeneratedImageMain />} />
+        <Route path="/genimg/:id" element={<GeneratedImageMain />} />
         <Route path="/sminput" element={ <PopSmallInput /> } />
       </Routes>
     </BrowserRouter>

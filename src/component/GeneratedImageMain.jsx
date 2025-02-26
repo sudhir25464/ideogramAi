@@ -1,16 +1,41 @@
-import React from "react";
+import  {useState, useEffect} from "react";
 
 import "../CSS/generatedImagemain.css";
 import genimgs from "../image/image-16.jpg";
 import moreicon from "../image/icons8-more-24.png";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 function GeneratedImageMain() {
+
+
+  const { id } = useParams(); // URL se post ID le raha hai
+  const [post, setPost] = useState(null);
+
+  useEffect(() => {
+    getPostDetails();
+  }, []);
+
+  const getPostDetails = async () => {
+    try {
+      const response = await axios.get(`http://127.0.0.1:5000/get_images_by_id/${id}`);
+      setPost(response.data.data);
+    } catch (error) {
+      console.error("Error fetching post details:", error);
+    }
+  };
+
+  // if (!post) return <p>Loading...</p>;
+
+
   return (
     <div className="generated-image-container">
       <div className="inner-generated-image-container">
         <div className="left-inner-generated-image">
           <div className="generated-big-image">
             <img src={genimgs}></img>
+
+            {/* <img src={post.imageUrl} alt={post.title} width="400" /> */}
           </div>
         </div>
 

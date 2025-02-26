@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../CSS/pop.css";
 import TougleInput from "./TougleInput";
+import { useNavigate } from "react-router-dom";
 
 
 const LoadingComponent = () => {
@@ -18,6 +19,9 @@ const LoadingComponent = () => {
 };
 
 function TopSearchBar() {
+
+
+  const navigate = useNavigate();
 
   const [filterOption, setFilterOption] = useState("Explore")
   
@@ -57,12 +61,12 @@ function TopSearchBar() {
 
 
     try {
-      console.log("genrate staer")
+     
       const response = await axios.post(
         "http://127.0.0.1:5000/gen-post",
         userinput
       )
-      console.log("genrate end")
+      
 
       console.log(userinput)
 
@@ -80,7 +84,7 @@ function TopSearchBar() {
 
       console.log("Data sent successfully:",  imageUrl );
 
-      // alert("Form submitted successfully!");
+      
 
       setShowPopup(true);
 
@@ -92,9 +96,7 @@ function TopSearchBar() {
   };
 
 
-  // const filterCtogoryfunction = {
-
-  // }
+  
 
 
   const clearUserInput = () => {
@@ -174,18 +176,20 @@ function TopSearchBar() {
       console.log(error.error);
     }
   };
+
+  
     // for filter  
-    const filterfunction= (cat) => {
-      if (!TopStrore) {
-        console.error("TopStrore is undefined");
-        return;
-    }
-      const updatedData = TopStrore.filter((x) => x.category === cat);
-      setFiltercategory(updatedData);
+  //   const filterfunction= (cat) => {
+  //     if (!TopStrore) {
+  //       console.error("TopStrore is undefined");
+  //       return;
+  //   }
+  //     const updatedData = TopStrore.filter((x) => x.category === cat);
+  //     setFiltercategory(updatedData);
   
-      console.log("  filterd  image store data",filterCategory);
+  //     console.log("  filterd  image store data",filterCategory);
   
-  }
+  // }
 
 
   const catgData = imagestore&&imagestore.filter( e=> {
@@ -344,17 +348,21 @@ function TopSearchBar() {
         <div className="map-image-container">
           {catgData && catgData.length>0 ?
             catgData.map((image, index) => (
-              <div key={index} className="genered-image">
-                <img src={image.image_urls} alt="loading" />
+              <div key={index} className="genered-image"  onClick={() => navigate(`/genimg/${image.id}`)}>
+                <img src={image.image_urls} alt="loading"  />
                
 
               </div>
              
             ))
-            :<div className="data-not found container">
+            :<div className="data-not-found-container">
               
               
-              <div>Data Not Found</div></div>
+              <div>Data Not Found</div>
+              
+              
+              
+              </div>
           }
         </div>
 
