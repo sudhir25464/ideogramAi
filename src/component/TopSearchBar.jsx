@@ -348,7 +348,7 @@ function TopSearchBar() {
         <div className="map-image-container">
           {catgData && catgData.length>0 ?
             catgData.map((image, index) => (
-              <div key={index} className="genered-image"  onClick={() => navigate(`/genimg/${image.id}`)}>
+              <div key={index} className="genered-image"  onClick={() => navigate(`/genimg/${image.image_urls.id}`)}>
                 <img src={image.image_urls} alt="loading"  />
                
 
