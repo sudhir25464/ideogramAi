@@ -346,12 +346,15 @@ function TopSearchBar() {
             catgData.map((image, index) => (
               <div key={index} className="genered-image">
                 <img src={image.image_urls} alt="loading" />
-                <div>{image.ai_prompt}</div>
+               
 
               </div>
              
             ))
-            :"khali hai"
+            :<div className="data-not found container">
+              
+              
+              <div>Data Not Found</div></div>
           }
         </div>
 
